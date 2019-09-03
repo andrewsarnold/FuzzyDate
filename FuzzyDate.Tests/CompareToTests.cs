@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FuzzyDate.Tests
 {
 	[TestClass]
-	public class FuzzyDateTests
+	public class CompareToTests
 	{
 		[TestMethod]
-		public void CompareToTests()
+		public void CompareToTest()
 		{
 			// -1 = first object comes before the second
 			//  0 = objects should be sorted on the same level

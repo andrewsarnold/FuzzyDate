@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+using FuzzyDate.Rules;
+
+[assembly: InternalsVisibleTo("FuzzyDate.Tests")]
 
 namespace FuzzyDate
 {
@@ -8,32 +12,38 @@ namespace FuzzyDate
 		public int? Month { get; }
 		public int? Day { get; }
 
-		public FuzzyDate()
+		public FuzzyDate() : this(null, null, null)
 		{
 		}
 
-		public FuzzyDate(int year, int month, int day)
+		public FuzzyDate(int year, int month, int day) : this((int?)year, month, day)
+		{
+		}
+
+		public FuzzyDate(int year, int month) : this(year, month, null)
+		{
+		}
+
+		public FuzzyDate(int year) : this(year, null, null)
+		{
+		}
+
+		private FuzzyDate(int? year, int? month, int? day)
 		{
 			Year = year;
 			Month = month;
 			Day = day;
+
+			RulesRunner.RunRules(this);
 		}
 
-		public FuzzyDate(int year, int month)
-		{
-			Year = year;
-			Month = month;
-		}
-
-		public FuzzyDate(int year)
-		{
-			Year = year;
-		}
-
+		/// <summary>
+		/// Parses a date from format "YYYY/MM/DD" where MM and DD are optional
+		/// </summary>
+		/// <param name="value"></param>
 		public FuzzyDate(string value)
 		{
-			// Of format "YYYY/MM/DD" where MM and DD are optional
-			// Could definitely be made more efficient(?) with a regex or something
+			// Could probably be made more efficient with a regex or something
 			if (value.Length >= 4)
 			{
 				Year = int.Parse(value.Substring(0, 4));
@@ -48,6 +58,8 @@ namespace FuzzyDate
 					}
 				}
 			}
+
+			RulesRunner.RunRules(this);
 		}
 
 		public int CompareTo(FuzzyDate other)
