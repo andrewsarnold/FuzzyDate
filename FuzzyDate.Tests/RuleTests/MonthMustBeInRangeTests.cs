@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FuzzyDate.Tests.RuleTests
 {
 	[TestClass]
-	public class MonthMustBeInRangeTest
+	public class MonthMustBeInRangeTests
 	{
 		[TestMethod]
 		public void MonthLessThanOneIsInvalid()

@@ -9,7 +9,8 @@ namespace FuzzyDate.Rules
 		{
 			new DayMustBeInRangeRule(),
 			new MonthMustBeInRangeRule(),
-			new YearMustBeNonZeroRule()
+			new YearMustBeNonZeroRule(),
+			new DateMustExistInCalendarRule()
 		};
 
 		internal static void RunRules(FuzzyDate date)

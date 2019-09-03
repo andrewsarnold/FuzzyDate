@@ -12,6 +12,10 @@ namespace FuzzyDate
 		public int? Month { get; }
 		public int? Day { get; }
 
+		public FuzzyDate(DateTime dateTime) : this(dateTime.Year, dateTime.Month, dateTime.Day)
+		{
+		}
+
 		public FuzzyDate() : this(null, null, null)
 		{
 		}
@@ -124,6 +128,20 @@ namespace FuzzyDate
 			}
 
 			return new DateTime(Year.Value, Month.Value, Day.Value).ToString("D");
+		}
+
+		/// <summary>
+		/// Converts a fuzzy date to a .NET DateTime object. Uses "1" for unknown values.
+		/// </summary>
+		/// <returns></returns>
+		public DateTime ToDateTime()
+		{
+			// DateTime years must be 1 or greater
+			var year = Year.HasValue
+				? Math.Max(Year.Value, 1)
+				: 1;
+
+			return new DateTime(year, Month ?? 1, Day ?? 1);
 		}
 	}
 }

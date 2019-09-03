@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FuzzyDate.Tests.RuleTests
 {
 	[TestClass]
-	public class YearMustBeNonZeroRuleTest
+	public class YearMustBeNonZeroRuleTests
 	{
 		[TestMethod]
 		public void YearGreaterThanZeroIsValid()
