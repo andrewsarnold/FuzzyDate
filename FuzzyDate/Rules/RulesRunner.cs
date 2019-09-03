@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FuzzyDate.Rules.RuleImplementations;
 
 namespace FuzzyDate.Rules
 {
@@ -13,7 +14,7 @@ namespace FuzzyDate.Rules
 
 		internal static void RunRules(FuzzyDate date)
 		{
-			foreach(var rule in rules)
+			foreach (var rule in rules)
 			{
 				rule.Verify(date);
 			}

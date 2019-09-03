@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FuzzyDate.Rules
+namespace FuzzyDate.Rules.RuleImplementations
 {
 	internal class DayMustBeInRangeRule : IRule
 	{
