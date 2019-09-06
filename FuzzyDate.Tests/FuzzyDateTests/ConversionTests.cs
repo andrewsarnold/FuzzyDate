@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FuzzyDate.Tests
+namespace FuzzyDate.Tests.FuzzyDateTests
 {
 	[TestClass]
 	public class ConversionTests

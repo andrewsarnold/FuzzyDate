@@ -15,6 +15,7 @@ namespace FuzzyDate.Rules
 
 		private static readonly IEnumerable<IRule<FuzzyDateRange>> _fuzzyDateRangeRules = new List<IRule<FuzzyDateRange>>
 		{
+			new RangeMustBeChronologicalRule()
 		};
 
 		internal static void RunRules(FuzzyDate date)

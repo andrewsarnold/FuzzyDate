@@ -9,8 +9,8 @@ namespace FuzzyDate
 
 		public FuzzyDateRange(FuzzyDate from, FuzzyDate to)
 		{
-			From = from;
-			To = to;
+			From = from ?? FuzzyDate.Unknown;
+			To = to ?? FuzzyDate.Unknown;
 
 			RulesRunner.RunRules(this);
 		}

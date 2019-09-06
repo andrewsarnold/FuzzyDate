@@ -33,6 +33,17 @@ namespace FuzzyDate
 		}
 
 		/// <summary>
+		/// Gets a FuzzyDate with no value. Equivalent to a constructor with no parameters.
+		/// </summary>
+		public static FuzzyDate Unknown
+		{
+			get
+			{
+				return new FuzzyDate();
+			}
+		}
+
+		/// <summary>
 		/// Gets a FuzzyDate initialized to today's date.
 		/// </summary>
 		public static FuzzyDate Today
