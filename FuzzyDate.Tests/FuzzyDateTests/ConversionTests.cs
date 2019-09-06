@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FuzzyDate.Tests
+namespace FuzzyDate.Tests.FuzzyDateTests
 {
 	[TestClass]
 	public class ConversionTests
@@ -33,6 +33,23 @@ namespace FuzzyDate.Tests
 				Assert.AreEqual(1, converted.Year);
 				Assert.AreEqual(fDate.Month.Value, converted.Month);
 				Assert.AreEqual(fDate.Day.Value, converted.Day);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
+		public void ConvertUnknownDayToDateTimeTest()
+		{
+			try
+			{
+				var fDate = new FuzzyDate(2019, 9);
+				var converted = fDate.ToDateTime();
+				Assert.AreEqual(fDate.Year.Value, converted.Year);
+				Assert.AreEqual(fDate.Month.Value, converted.Month);
+				Assert.AreEqual(1, converted.Day);
 			}
 			catch (Exception ex)
 			{

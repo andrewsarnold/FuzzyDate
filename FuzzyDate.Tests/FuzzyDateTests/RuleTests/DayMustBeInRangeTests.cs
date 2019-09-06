@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FuzzyDate.Tests.RuleTests
+namespace FuzzyDate.Tests.RuleTests.FuzzyDateTests
 {
 	[TestClass]
 	public class DayMustBeInRangeTests

@@ -1,6 +1,6 @@
 ﻿namespace FuzzyDate.Rules.RuleImplementations
 {
-	internal class DateMustExistInCalendarRule : IRule
+	internal class DateMustExistInCalendarRule : IRule<FuzzyDate>
 	{
 		public void Verify(FuzzyDate date)
 		{
