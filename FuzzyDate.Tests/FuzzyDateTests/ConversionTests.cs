@@ -39,5 +39,22 @@ namespace FuzzyDate.Tests.FuzzyDateTests
 				Assert.Fail($"Expect no exception, but got {ex.Message}");
 			}
 		}
+
+		[TestMethod]
+		public void ConvertUnknownDayToDateTimeTest()
+		{
+			try
+			{
+				var fDate = new FuzzyDate(2019, 9);
+				var converted = fDate.ToDateTime();
+				Assert.AreEqual(fDate.Year.Value, converted.Year);
+				Assert.AreEqual(fDate.Month.Value, converted.Month);
+				Assert.AreEqual(1, converted.Day);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
 	}
 }

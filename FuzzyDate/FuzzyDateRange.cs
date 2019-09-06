@@ -1,4 +1,5 @@
-﻿using FuzzyDate.Rules;
+﻿using System;
+using FuzzyDate.Rules;
 
 namespace FuzzyDate
 {
@@ -24,6 +25,13 @@ namespace FuzzyDate
 		public override string ToString()
 		{
 			return $"{From}-{To}";
+		}
+
+		public TimeSpan ToTimeSpan()
+		{
+			var from = From.ToDateTime();
+			var to = To.ToDateTime();
+			return to - from;
 		}
 	}
 }
