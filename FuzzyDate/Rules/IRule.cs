@@ -1,11 +1,11 @@
 ﻿namespace FuzzyDate.Rules
 {
-	internal interface IRule
+	internal interface IRule<T>
 	{
 		/// <summary>
 		/// Throws an exception with a relevant message if the rule is not met.
 		/// </summary>
-		/// <param name="date"></param>
-		void Verify(FuzzyDate date);
+		/// <param name="obj"></param>
+		void Verify(T obj);
 	}
 }

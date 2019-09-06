@@ -1,0 +1,29 @@
+﻿using FuzzyDate.Rules;
+
+namespace FuzzyDate
+{
+	public class FuzzyDateRange
+	{
+		public FuzzyDate From { get; }
+		public FuzzyDate To { get; }
+
+		public FuzzyDateRange(FuzzyDate from, FuzzyDate to)
+		{
+			From = from;
+			To = to;
+
+			RulesRunner.RunRules(this);
+		}
+
+		/// <summary>
+		/// For testing purposes only. You should be using
+		/// some sort of display adapter to control how
+		/// dates are displayed to a consumer.
+		/// </summary>
+		/// <returns>A human-readable string representation of the date range.</returns>
+		public override string ToString()
+		{
+			return $"{From}-{To}";
+		}
+	}
+}

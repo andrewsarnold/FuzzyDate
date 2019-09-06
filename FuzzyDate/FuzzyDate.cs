@@ -32,6 +32,18 @@ namespace FuzzyDate
 		{
 		}
 
+		/// <summary>
+		/// Gets a FuzzyDate initialized to today's date.
+		/// </summary>
+		public static FuzzyDate Today
+		{
+			get
+			{
+				var now = DateTime.Today;
+				return new FuzzyDate(now.Year, now.Month, now.Day);
+			}
+		}
+
 		private FuzzyDate(int? year, int? month, int? day)
 		{
 			Year = year;
@@ -109,7 +121,7 @@ namespace FuzzyDate
 		/// some sort of display adapter to control how
 		/// dates are displayed to a consumer.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>A human-readable string representation of the date.</returns>
 		public override string ToString()
 		{
 			if (!Year.HasValue)

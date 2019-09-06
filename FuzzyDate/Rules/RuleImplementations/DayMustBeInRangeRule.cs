@@ -2,7 +2,7 @@
 
 namespace FuzzyDate.Rules.RuleImplementations
 {
-	internal class DayMustBeInRangeRule : IRule
+	internal class DayMustBeInRangeRule : IRule<FuzzyDate>
 	{
 		public void Verify(FuzzyDate date)
 		{

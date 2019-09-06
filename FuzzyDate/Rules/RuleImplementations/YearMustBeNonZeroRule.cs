@@ -2,7 +2,7 @@
 
 namespace FuzzyDate.Rules.RuleImplementations
 {
-	internal class YearMustBeNonZeroRule : IRule
+	internal class YearMustBeNonZeroRule : IRule<FuzzyDate>
 	{
 		public void Verify(FuzzyDate date)
 		{
