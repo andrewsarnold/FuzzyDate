@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using FuzzyDate.Rules;
 
 [assembly: InternalsVisibleTo("FuzzyDate.Tests")]
 
 namespace FuzzyDate
 {
-	public class FuzzyDate : IComparable<FuzzyDate>
+	public class FuzzyDate : IComparable<FuzzyDate>, ISerializable
 	{
 		public int? Year { get; }
 		public int? Month { get; }
@@ -169,6 +170,18 @@ namespace FuzzyDate
 				: 1;
 
 			return new DateTime(year, Month ?? 1, Day ?? 1);
+		}
+
+		public void GetObjectData(SerializationInfo info, StreamingContext context)
+		{
+			if (info == null)
+			{
+				throw new ArgumentNullException(nameof(info));
+			}
+
+			info.AddValue("Year", Year);
+			info.AddValue("Month", Day);
+			info.AddValue("Day", Day);
 		}
 	}
 }

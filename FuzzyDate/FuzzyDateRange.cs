@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using FuzzyDate.Rules;
 
 namespace FuzzyDate
 {
-	public class FuzzyDateRange
+	public class FuzzyDateRange : ISerializable
 	{
 		public FuzzyDate From { get; }
 		public FuzzyDate To { get; }
@@ -32,6 +33,17 @@ namespace FuzzyDate
 			var from = From.ToDateTime();
 			var to = To.ToDateTime();
 			return to - from;
+		}
+
+		public void GetObjectData(SerializationInfo info, StreamingContext context)
+		{
+			if (info == null)
+			{
+				throw new ArgumentNullException(nameof(info));
+			}
+
+			info.AddValue("From", From);
+			info.AddValue("To", To);
 		}
 	}
 }
