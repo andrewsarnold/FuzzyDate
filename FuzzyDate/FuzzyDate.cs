@@ -215,5 +215,19 @@ namespace FuzzyDate
 
 			return new FuzzyDate(Year, Month, Day);
 		}
+
+		/// <summary>
+		/// Returns an indication whether the specified year is a leap year.
+		/// </summary>
+		/// <returns>true if Year is defined and is a leap year; otherwise, false.</returns>
+		public bool IsLeapYear()
+		{
+			if (!Year.HasValue)
+			{
+				return false;
+			}
+
+			return DateTime.IsLeapYear(Year.Value);
+		}
 	}
 }
