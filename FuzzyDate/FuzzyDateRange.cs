@@ -4,7 +4,7 @@ using FuzzyDate.Rules;
 
 namespace FuzzyDate
 {
-	public class FuzzyDateRange : ISerializable
+	public class FuzzyDateRange : IComparable<FuzzyDateRange>, ISerializable
 	{
 		public FuzzyDate From { get; }
 		public FuzzyDate To { get; }
@@ -44,6 +44,17 @@ namespace FuzzyDate
 
 			info.AddValue("From", From);
 			info.AddValue("To", To);
+		}
+
+		public int CompareTo(FuzzyDateRange other)
+		{
+			var fromCompare = From.CompareTo(other.From);
+			if (fromCompare != 0)
+			{
+				return fromCompare;
+			}
+
+			return To.CompareTo(other.To);
 		}
 	}
 }
