@@ -183,5 +183,37 @@ namespace FuzzyDate
 			info.AddValue("Month", Day);
 			info.AddValue("Day", Day);
 		}
+
+		public FuzzyDate AddYears(int value)
+		{
+			var newYear = Year.HasValue
+				? Year.Value + value
+				: (int?)null;
+			return new FuzzyDate(newYear, Month, Day);
+		}
+
+		public FuzzyDate AddMonths(int value)
+		{
+			if (Month.HasValue)
+			{
+				var asDateTime = ToDateTime();
+				var newDateTime = asDateTime.AddMonths(value);
+				return new FuzzyDate(newDateTime);
+			}
+
+			return new FuzzyDate(Year, Month, Day);
+		}
+
+		public FuzzyDate AddDays(int value)
+		{
+			if (Day.HasValue)
+			{
+				var asDateTime = ToDateTime();
+				var newDateTime = asDateTime.AddDays(value);
+				return new FuzzyDate(newDateTime);
+			}
+
+			return new FuzzyDate(Year, Month, Day);
+		}
 	}
 }
