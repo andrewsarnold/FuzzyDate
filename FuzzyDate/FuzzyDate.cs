@@ -65,28 +65,32 @@ namespace FuzzyDate
 		}
 
 		/// <summary>
-		/// Parses a date from format "YYYY/MM/DD" where MM and DD are optional
+		/// Parses a date from format "YYYY", "YYYY/MM", or "YYYY/MM/DD"
 		/// </summary>
 		/// <param name="value"></param>
-		public FuzzyDate(string value)
+		public static FuzzyDate Parse(string value)
 		{
+			int? year = null;
+			int? month = null;
+			int? day = null;
+
 			// Could probably be made more efficient with a regex or something
 			if (value.Length >= 4)
 			{
-				Year = int.Parse(value.Substring(0, 4));
+				year = int.Parse(value.Substring(0, 4));
 
 				if (value.Length >= 7)
 				{
-					Month = int.Parse(value.Substring(5, 2));
+					month = int.Parse(value.Substring(5, 2));
 
 					if (value.Length == 10)
 					{
-						Day = int.Parse(value.Substring(8, 2));
+						day = int.Parse(value.Substring(8, 2));
 					}
 				}
 			}
 
-			RulesRunner.RunRules(this);
+			return new FuzzyDate(year, month, day);
 		}
 
 		public int CompareTo(FuzzyDate other)
