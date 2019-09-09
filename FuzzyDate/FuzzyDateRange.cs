@@ -6,9 +6,21 @@ namespace FuzzyDate
 {
 	public class FuzzyDateRange : IComparable<FuzzyDateRange>, ISerializable
 	{
+		/// <summary>
+		/// Gets the "from" component of the range represented by this instance.
+		/// </summary>
 		public FuzzyDate From { get; }
+
+		/// <summary>
+		/// Gets the "to" component of the range represented by this instance.
+		/// </summary>
 		public FuzzyDate To { get; }
 
+		/// <summary>
+		/// Initializes a new instance of the FuzzyDateRange class with the specified From and To values.
+		/// </summary>
+		/// <param name="from">The From value. Can be any FuzzyDate.</param>
+		/// <param name="to">The To value. Can be any FuzzyDate.</param>
 		public FuzzyDateRange(FuzzyDate from, FuzzyDate to)
 		{
 			From = from ?? FuzzyDate.Unknown;
@@ -28,6 +40,10 @@ namespace FuzzyDate
 			return $"{From}-{To}";
 		}
 
+		/// <summary>
+		/// Converts a FuzzyDateRange to a .NET TimeSpan object.
+		/// </summary>
+		/// <returns>A TimeSpan based on the DateTime conversions of From and To.</returns>
 		public TimeSpan ToTimeSpan()
 		{
 			var from = From.ToDateTime();
@@ -35,6 +51,11 @@ namespace FuzzyDate
 			return to - from;
 		}
 
+		/// <summary>
+		/// Populates a SerializationInfo object with the data needed to serialize the current FuzzyDate object.
+		/// </summary>
+		/// <param name="info">The object to populate with data.</param>
+		/// <param name="context">The destination for this serialization. (This parameter is not used; specify null.)</param>
 		public void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
 			if (info == null)
@@ -46,15 +67,22 @@ namespace FuzzyDate
 			info.AddValue("To", To);
 		}
 
-		public int CompareTo(FuzzyDateRange other)
+		/// <summary>
+		/// Compares the value of this instance to a specified FuzzyDateRange value and returns an integer
+		/// that indicates whether this instance is earlier than, the same as, or later than the
+		/// specified FuzzyDateRange value.
+		/// </summary>
+		/// <param name="value">The object to compare to the current instance.</param>
+		/// <returns>A signed number indicating the relative values of this instance and the value parameter.</returns>
+		public int CompareTo(FuzzyDateRange value)
 		{
-			var fromCompare = From.CompareTo(other.From);
+			var fromCompare = From.CompareTo(value.From);
 			if (fromCompare != 0)
 			{
 				return fromCompare;
 			}
 
-			return To.CompareTo(other.To);
+			return To.CompareTo(value.To);
 		}
 	}
 }
