@@ -39,11 +39,11 @@ namespace FuzzyDates.Tests.FuzzyDateRangeTests.RuleTests
 		}
 
 		[TestMethod]
-		public void FromNullIsValid()
+		public void FromUnknownIsValid()
 		{
 			try
 			{
-				_ = new FuzzyDateRange(null, FuzzyDate.Today);
+				_ = new FuzzyDateRange(FuzzyDate.Unknown, FuzzyDate.Today);
 			}
 			catch (Exception ex)
 			{
@@ -52,11 +52,11 @@ namespace FuzzyDates.Tests.FuzzyDateRangeTests.RuleTests
 		}
 
 		[TestMethod]
-		public void ToNullIsValid()
+		public void ToUnknownIsValid()
 		{
 			try
 			{
-				_ = new FuzzyDateRange(FuzzyDate.Today, null);
+				_ = new FuzzyDateRange(FuzzyDate.Today, FuzzyDate.Unknown);
 			}
 			catch (Exception ex)
 			{
@@ -65,11 +65,11 @@ namespace FuzzyDates.Tests.FuzzyDateRangeTests.RuleTests
 		}
 
 		[TestMethod]
-		public void BothNullIsValid()
+		public void BothUnknownIsValid()
 		{
 			try
 			{
-				_ = new FuzzyDateRange(null, null);
+				_ = new FuzzyDateRange(FuzzyDate.Unknown, FuzzyDate.Unknown);
 			}
 			catch (Exception ex)
 			{

@@ -4,7 +4,7 @@ using FuzzyDates.Rules;
 
 namespace FuzzyDates
 {
-	public class FuzzyDateRange : IComparable<FuzzyDateRange>, ISerializable
+	public struct FuzzyDateRange : IComparable<FuzzyDateRange>, ISerializable
 	{
 		/// <summary>
 		/// Gets the "from" component of the range represented by this instance.
@@ -23,8 +23,8 @@ namespace FuzzyDates
 		/// <param name="to">The To value. Can be any FuzzyDate.</param>
 		public FuzzyDateRange(FuzzyDate from, FuzzyDate to)
 		{
-			From = from ?? FuzzyDate.Unknown;
-			To = to ?? FuzzyDate.Unknown;
+			From = from;
+			To = to;
 
 			RulesRunner.RunRules(this);
 		}
