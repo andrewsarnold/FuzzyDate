@@ -7,7 +7,7 @@ using FuzzyDates.Rules;
 
 namespace FuzzyDates
 {
-	public class FuzzyDate : IComparable<FuzzyDate>, ISerializable
+	public struct FuzzyDate : IComparable<FuzzyDate>, ISerializable
 	{
 		/// <summary>
 		/// Gets the year component of the date represented by this instance.
@@ -29,13 +29,6 @@ namespace FuzzyDates
 		/// </summary>
 		/// <param name="dateTime">The date.</param>
 		public FuzzyDate(DateTime dateTime) : this(dateTime.Year, dateTime.Month, dateTime.Day)
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the FuzzyDate class with no value.
-		/// </summary>
-		public FuzzyDate() : this(null, null, null)
 		{
 		}
 
