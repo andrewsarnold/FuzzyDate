@@ -125,5 +125,17 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 		{
 			Assert.ThrowsException<AmbiguousFormatException>(() => _ = FuzzyDate.Parse("05/05/2019"));
 		}
+
+		[TestMethod]
+		public void ParseFromImpossibleDateTest()
+		{
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = FuzzyDate.Parse("15/15/2019"));
+		}
+
+		[TestMethod]
+		public void ParseFromGarbageTest()
+		{
+			Assert.ThrowsException<BadDateFormatException>(() => _ = FuzzyDate.Parse("not a date"));
+		}
 	}
 }
