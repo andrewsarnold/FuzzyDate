@@ -35,7 +35,7 @@ namespace FuzzyDates.Tests.RuleTests.FuzzyDateTests
 		[TestMethod]
 		public void YearEqualToZeroIsInvalid()
 		{
-			Assert.ThrowsException<ArgumentException>(() => _ = new FuzzyDate(0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = new FuzzyDate(0));
 		}
 	}
 }
