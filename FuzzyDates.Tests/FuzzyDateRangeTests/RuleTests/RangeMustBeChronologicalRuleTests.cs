@@ -35,7 +35,7 @@ namespace FuzzyDates.Tests.FuzzyDateRangeTests.RuleTests
 		[TestMethod]
 		public void FromAfterToIsInvalid()
 		{
-			Assert.ThrowsException<ArgumentException>(() => _ = new FuzzyDateRange(new FuzzyDate(2019, 5), new FuzzyDate(2019, 1)));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = new FuzzyDateRange(new FuzzyDate(2019, 5), new FuzzyDate(2019, 1)));
 		}
 
 		[TestMethod]

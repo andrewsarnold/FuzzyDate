@@ -9,13 +9,13 @@ namespace FuzzyDates.Tests.RuleTests.FuzzyDateTests
 		[TestMethod]
 		public void MonthLessThanOneIsInvalid()
 		{
-			Assert.ThrowsException<ArgumentException>(() => _ = new FuzzyDate(2018, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = new FuzzyDate(2018, 0));
 		}
 
 		[TestMethod]
 		public void MonthGreaterThanTwelveIsInvalid()
 		{
-			Assert.ThrowsException<ArgumentException>(() => _ = new FuzzyDate(2018, 13));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = new FuzzyDate(2018, 13));
 		}
 
 		[TestMethod]

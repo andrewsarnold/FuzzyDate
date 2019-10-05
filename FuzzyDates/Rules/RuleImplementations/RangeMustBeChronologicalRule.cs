@@ -32,7 +32,7 @@ namespace FuzzyDates.Rules.RuleImplementations
 			var sortOrder = range.From.CompareTo(range.To);
 			if (sortOrder > 0)
 			{
-				throw new ArgumentException("To date must be after From date", nameof(range.To));
+				throw new ArgumentOutOfRangeException("To date must be after From date", nameof(range.To));
 			}
 		}
 	}

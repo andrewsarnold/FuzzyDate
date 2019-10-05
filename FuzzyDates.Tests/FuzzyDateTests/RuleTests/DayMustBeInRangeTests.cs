@@ -9,13 +9,13 @@ namespace FuzzyDates.Tests.RuleTests.FuzzyDateTests
 		[TestMethod]
 		public void DayLessThanOneIsInvalid()
 		{
-			Assert.ThrowsException<ArgumentException>(() => _ = new FuzzyDate(2018, 9, 0));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = new FuzzyDate(2018, 9, 0));
 		}
 
 		[TestMethod]
 		public void DayGreaterThanTwelveIsInvalid()
 		{
-			Assert.ThrowsException<ArgumentException>(() => _ = new FuzzyDate(2018, 9, 32));
+			Assert.ThrowsException<ArgumentOutOfRangeException>(() => _ = new FuzzyDate(2018, 9, 32));
 		}
 
 		[TestMethod]

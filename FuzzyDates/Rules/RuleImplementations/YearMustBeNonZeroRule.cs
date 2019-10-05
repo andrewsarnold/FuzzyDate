@@ -8,7 +8,7 @@ namespace FuzzyDates.Rules.RuleImplementations
 		{
 			if (date.Year.HasValue && date.Year == 0)
 			{
-				throw new ArgumentException("Year cannot be zero", nameof(date.Year));
+				throw new ArgumentOutOfRangeException("Year cannot be zero", nameof(date.Year));
 			}
 		}
 	}
