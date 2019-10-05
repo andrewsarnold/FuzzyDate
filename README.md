@@ -1,4 +1,4 @@
-# FuzzyDate
+# FuzzyDates
 A library for defining date objects where the month and day may not be known.
 
 # Features
