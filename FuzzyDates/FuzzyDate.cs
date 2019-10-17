@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using FuzzyDates.Exceptions;
+using FuzzyDates.Parsers;
 using FuzzyDates.Rules;
 
 [assembly: InternalsVisibleTo("FuzzyDates.Tests")]
@@ -94,7 +96,8 @@ namespace FuzzyDates
 		}
 
 		/// <summary>
-		/// Parses a date from format "YYYY", "YYYY/MM", "YYYY/MM/DD", "MM/YYYY", "DD/MM/YYYY", or "MM/DD/YYYY"
+		/// Parses a date from format "YYYY", "YYYY/MM", "YYYY/MM/DD", "MM/YYYY", "DD/MM/YYYY",
+		/// "MM/DD/YYYY", "M/YYYY", "YYYY/M", "DD/M/YYYY", "YYYY/M/DD"
 		/// </summary>
 		/// <param name="value"></param>
 		public static FuzzyDate Parse(string value)
@@ -110,70 +113,21 @@ namespace FuzzyDates
 				.Replace(".", "/")
 				.Replace("-", "/");
 
-			var mmddyyyyRegex = new Regex(@"(\d\d)\/(\d\d)\/(\d\d\d\d)");
-			var mmddyyyyMatch = mmddyyyyRegex.Match(value);
-			if (mmddyyyyMatch.Success)
+			var parsers = new List<FuzzyDateParser>
 			{
-				var val1 = mmddyyyyMatch.Groups[1].Value;
-				var val2 = mmddyyyyMatch.Groups[2].Value;
-				var yyyy = mmddyyyyMatch.Groups[3].Value;
+				new FuzzyDateParserMDY(),
+				new FuzzyDateParserMY(),
+				new FuzzyDateParserY(),
+				new FuzzyDateParserYM(),
+				new FuzzyDateParserYMD()
+			};
 
-				var int1 = int.Parse(val1);
-				var int2 = int.Parse(val2);
-
-				// Is val1 month and val2 day, or is val1 day and val2 month?
-				if (int2 > 12)
+			foreach (var parser in parsers)
+			{
+				if (parser.Matches(value))
 				{
-					return new FuzzyDate(int.Parse(yyyy), int1, int2);
+					return parser.Constructor();
 				}
-				else if (int1 > 12)
-				{
-					return new FuzzyDate(int.Parse(yyyy), int2, int1);
-				}
-				else if (int1 <= 12 && int2 <= 12)
-				{
-					throw new AmbiguousFormatException();
-				}
-			}
-
-			var yyyymmddRegex = new Regex(@"(\d\d\d\d)\/(\d\d)\/(\d\d)");
-			var yyyymmddMatch = yyyymmddRegex.Match(value);
-			if (yyyymmddMatch.Success)
-			{
-				var yyyy = yyyymmddMatch.Groups[1].Value;
-				var mm = yyyymmddMatch.Groups[2].Value;
-				var dd = yyyymmddMatch.Groups[3].Value;
-
-				return new FuzzyDate(int.Parse(yyyy), int.Parse(mm), int.Parse(dd));
-			}
-
-			var mmyyyyRegex = new Regex(@"(\d\d)\/(\d\d\d\d)");
-			var mmyyyyMatch = mmyyyyRegex.Match(value);
-			if (mmyyyyMatch.Success)
-			{
-				var mm = mmyyyyMatch.Groups[1].Value;
-				var yyyy = mmyyyyMatch.Groups[2].Value;
-
-				return new FuzzyDate(int.Parse(yyyy), int.Parse(mm));
-			}
-
-			var yyyymmRegex = new Regex(@"(\d\d\d\d)\/(\d\d)");
-			var yyyymmMatch = yyyymmRegex.Match(value);
-			if (yyyymmMatch.Success)
-			{
-				var yyyy = yyyymmMatch.Groups[1].Value;
-				var mm = yyyymmMatch.Groups[2].Value;
-
-				return new FuzzyDate(int.Parse(yyyy), int.Parse(mm));
-			}
-
-			var yyyyRegex = new Regex(@"(\d\d\d\d)");
-			var yyyyMatch = yyyyRegex.Match(value);
-			if (yyyyMatch.Success)
-			{
-				var yyyy = yyyyMatch.Groups[1].Value;
-
-				return new FuzzyDate(int.Parse(yyyy));
 			}
 
 			throw new BadDateFormatException();
