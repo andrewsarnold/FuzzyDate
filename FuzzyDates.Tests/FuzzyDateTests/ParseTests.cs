@@ -121,6 +121,22 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 		}
 
 		[TestMethod]
+		public void ParseWithHyphenDelimiterTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("09-15-2019");
+				Assert.AreEqual(2019, date.Year.Value);
+				Assert.AreEqual(9, date.Month.Value);
+				Assert.AreEqual(15, date.Day.Value);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
 		public void ParseFromAmbiguousDateTest()
 		{
 			Assert.ThrowsException<AmbiguousFormatException>(() => _ = FuzzyDate.Parse("05/05/2019"));

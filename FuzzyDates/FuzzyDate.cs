@@ -104,6 +104,12 @@ namespace FuzzyDates
 				return new FuzzyDate();
 			}
 
+			// Support space, period, hyphen, and forward slash as delineators
+			value = value
+				.Replace(" ", "/")
+				.Replace(".", "/")
+				.Replace("-", "/");
+
 			var mmddyyyyRegex = new Regex(@"(\d\d)\/(\d\d)\/(\d\d\d\d)");
 			var mmddyyyyMatch = mmddyyyyRegex.Match(value);
 			if (mmddyyyyMatch.Success)
