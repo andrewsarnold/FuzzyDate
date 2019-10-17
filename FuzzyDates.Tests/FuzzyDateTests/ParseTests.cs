@@ -7,7 +7,6 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 	[TestClass]
 	public class ParseTests
 	{
-
 		[TestMethod]
 		public void ParseFromEmptyTest()
 		{
@@ -152,6 +151,86 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 		public void ParseFromGarbageTest()
 		{
 			Assert.ThrowsException<BadDateFormatException>(() => _ = FuzzyDate.Parse("not a date"));
+		}
+
+		[TestMethod]
+		public void ParseFromYearSingleDigitMonthTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("2019/9");
+				Assert.AreEqual(2019, date.Year.Value);
+				Assert.AreEqual(9, date.Month.Value);
+				Assert.IsFalse(date.Day.HasValue);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
+		public void ParseFromYearSingleDigitMonthDayTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("2019/9/15");
+				Assert.AreEqual(2019, date.Year.Value);
+				Assert.AreEqual(9, date.Month.Value);
+				Assert.AreEqual(15, date.Day.Value);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
+		public void ParseFromSingleDigitMonthYearTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("9/2019");
+				Assert.AreEqual(2019, date.Year.Value);
+				Assert.AreEqual(9, date.Month.Value);
+				Assert.IsFalse(date.Day.HasValue);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
+		public void ParseFromSingleDigitMonthDayYearTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("9/15/2019");
+				Assert.AreEqual(2019, date.Year.Value);
+				Assert.AreEqual(9, date.Month.Value);
+				Assert.AreEqual(15, date.Day.Value);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
+		public void ParseFromDaySingleDigitMonthYearTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("15/9/2019");
+				Assert.AreEqual(2019, date.Year.Value);
+				Assert.AreEqual(9, date.Month.Value);
+				Assert.AreEqual(15, date.Day.Value);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
 		}
 	}
 }
