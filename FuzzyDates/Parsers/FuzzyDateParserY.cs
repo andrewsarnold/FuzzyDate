@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace FuzzyDates.Parsers
 {
-	internal class FuzzyDateParserYyyy : FuzzyDateParser
+	internal class FuzzyDateParserY : FuzzyDateParser
 	{
-		internal override Regex Regex => new Regex(@"(\d\d\d\d)");
+		internal override Regex Regex => new Regex(@"^(\d{4})$");
 
 		internal override Func<FuzzyDate> Constructor => () =>
 		{
