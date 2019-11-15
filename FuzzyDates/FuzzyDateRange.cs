@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using FuzzyDates.Exceptions;
 using FuzzyDates.Rules;
 
 namespace FuzzyDates
@@ -83,6 +85,38 @@ namespace FuzzyDates
 			}
 
 			return To.CompareTo(value.To);
+		}
+
+		/// <summary>
+		/// Parses a date range from two fuzzy dates delimited by a hyphen or dash character.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static FuzzyDateRange Parse(string value)
+		{
+			if (string.IsNullOrWhiteSpace(value))
+			{
+				return new FuzzyDateRange();
+			}
+
+			// Support several different delineators, but they can't overlap with FuzzyDate delineators
+			value = value
+				.Replace("–", "-") // En dash
+				.Replace("—", "-") // Em dash
+				.Replace("−", "-") // Minus sign
+				.Replace(" to ", "-");
+
+			var regex = new Regex(@"([^\-]*)\-([^\-]*)");
+			var match = regex.Match(value);
+			if (match.Success)
+			{
+				var left = match.Groups[1].Value;
+				var right = match.Groups[2].Value;
+
+				return new FuzzyDateRange(FuzzyDate.Parse(left), FuzzyDate.Parse(right));
+			}
+
+			throw new BadDateRangeFormatException();
 		}
 	}
 }
