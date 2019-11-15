@@ -11,10 +11,13 @@ A library for defining date objects where the month and day may not be known.
   * Construct static constructors, e.g. from today's actual date (`FuzzyDate.Today`)
 * Built-in argument validation and error handling
 * Convert out to a .NET DateTime or a formatted string
+* Serialize / deserialization
 
 ## FuzzyDateRange
 
 Defines a date range bound by two FuzzyDate objects.
 
-* Built-in validation and error handling (keeps the range chronological)
+* Built-in argument validation and error handling (keeps the range chronological)
+* Construct using two FuzzyDates or a standard string format
 * Convert out to a .NET TimeSpan or a formatted string
+* Serialize / deserialization
