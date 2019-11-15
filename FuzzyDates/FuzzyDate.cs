@@ -14,19 +14,19 @@ namespace FuzzyDates
 	public struct FuzzyDate : IComparable<FuzzyDate>, ISerializable
 	{
 		/// <summary>
-		/// Gets the year component of the date represented by this instance.
+		/// Gets or sets the year component of the date represented by this instance.
 		/// </summary>
-		public int? Year { get; }
+		public int? Year { get; set; }
 
 		/// <summary>
-		/// Gets the month component of the date represented by this instance.
+		/// Gets or sets the month component of the date represented by this instance.
 		/// </summary>
-		public int? Month { get; }
+		public int? Month { get; set; }
 
 		/// <summary>
-		/// Gets the day component of the date represented by this instance.
+		/// Gets or sets the day component of the date represented by this instance.
 		/// </summary>
-		public int? Day { get; }
+		public int? Day { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the FuzzyDate class from the specified DateTime value.

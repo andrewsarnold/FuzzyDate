@@ -9,14 +9,14 @@ namespace FuzzyDates
 	public struct FuzzyDateRange : IComparable<FuzzyDateRange>, ISerializable
 	{
 		/// <summary>
-		/// Gets the "from" component of the range represented by this instance.
+		/// Gets or sets the "from" component of the range represented by this instance.
 		/// </summary>
-		public FuzzyDate From { get; }
+		public FuzzyDate From { get; set; }
 
 		/// <summary>
-		/// Gets the "to" component of the range represented by this instance.
+		/// Gets or sets the "to" component of the range represented by this instance.
 		/// </summary>
-		public FuzzyDate To { get; }
+		public FuzzyDate To { get; set; }
 
 		/// <summary>
 		/// Initializes a new instance of the FuzzyDateRange class with the specified From and To values.
