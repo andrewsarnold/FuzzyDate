@@ -11,23 +11,10 @@ namespace FuzzyDates.Parsers
 		internal override Func<FuzzyDate> Constructor => () =>
 		{
 			var yyyy = Match.Groups[1].Value;
-			var val1 = Match.Groups[2].Value;
-			var val2 = Match.Groups[3].Value;
+			var mm = Match.Groups[2].Value;
+			var dd = Match.Groups[3].Value;
 
-			var int1 = int.Parse(val1);
-			var int2 = int.Parse(val2);
-
-			// Is val1 month and val2 day, or is val1 day and val2 month?
-			if (int2 > 12)
-			{
-				return new FuzzyDate(int.Parse(yyyy), int1, int2);
-			}
-			else if (int1 > 12)
-			{
-				return new FuzzyDate(int.Parse(yyyy), int2, int1);
-			}
-
-			throw new AmbiguousFormatException();
+			return new FuzzyDate(int.Parse(yyyy), int.Parse(mm), int.Parse(dd));
 		};
 	}
 }
