@@ -43,6 +43,19 @@ namespace FuzzyDates
 		}
 
 		/// <summary>
+		/// Converts a FuzzyDateRange to a string with ISO 8601 compliance.
+		/// </summary>
+		/// <param name="useDoubleHyphen">If true, will separate dates with a double hyphen
+		/// ("--"). Uses forward slash ("/") by default.</param>
+		/// <returns>An ISO 8601 string representation of the date range.</returns>
+		public string ToIso8601(bool useDoubleHyphen = false)
+		{
+			return useDoubleHyphen
+				? $"{From.ToIso8601()}--{To.ToIso8601()}"
+				: $"{From.ToIso8601()}/{To.ToIso8601()}";
+		}
+
+		/// <summary>
 		/// Converts a FuzzyDateRange to a .NET TimeSpan object.
 		/// </summary>
 		/// <returns>A TimeSpan based on the DateTime conversions of From and To.</returns>

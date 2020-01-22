@@ -97,9 +97,10 @@ namespace FuzzyDates
 
 		/// <summary>
 		/// Parses a date from format "YYYY", "YYYY/MM", "YYYY/MM/DD", "MM/YYYY", "DD/MM/YYYY",
-		/// "MM/DD/YYYY", "M/YYYY", "YYYY/M", "DD/M/YYYY", "YYYY/M/DD"
+		/// "MM/DD/YYYY", "M/YYYY", "YYYY/M", "DD/M/YYYY", "YYYY/M/DD". Periods, slashes,
+		/// hyphens, and spaces are supported as delimiters.
 		/// </summary>
-		/// <param name="value"></param>
+		/// <param name="value">A string representation of a date.</param>
 		public static FuzzyDate Parse(string value)
 		{
 			if (string.IsNullOrWhiteSpace(value))
@@ -202,6 +203,36 @@ namespace FuzzyDates
 			}
 
 			return new DateTime(Year.Value, Month.Value, Day.Value).ToString("D");
+		}
+
+		/// <summary>
+		/// Converts a FuzzyDate to a string with ISO 8601 compliance.
+		/// </summary>
+		/// <param name="hyphenDelimit">If true, separate components with a hyphen.
+		/// Set to true by default or if Day component is not defined.</param>
+		/// <returns>An ISO 8601 string representation of the date.</returns>
+		public string ToIso8601(bool hyphenDelimit = true)
+		{
+			if (!Year.HasValue)
+			{
+				// No standard for this, as far as I can tell
+				return string.Empty;
+			}
+
+			if (!Month.HasValue)
+			{
+				return Year.ToString();
+			}
+
+			if (!Day.HasValue)
+			{
+				// Ignore hyphenDelimit because YYYYMM is not compliant
+				return $"{Year:0000}-{Month:00}";
+			}
+
+			return hyphenDelimit
+				? $"{Year:0000}-{Month:00}-{Day:00}"
+				: $"{Year:0000}{Month:00}{Day:00}";
 		}
 
 		/// <summary>
