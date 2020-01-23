@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Andrew Arnold</Authors>
     <Description>A library for defining date objects where the month and day may not be known.</Description>
-    <Copyright>Copyright © 2019</Copyright>
+    <Copyright>Copyright © 2019–2020</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
