@@ -6,7 +6,7 @@ namespace FuzzyDates.Rules.RuleImplementations
 	{
 		public void Verify(FuzzyDate date)
 		{
-			if (date.Month.HasValue && (date.Month < 1 || date.Month > 12))
+			if (date.Month.HasValue && (date.Month < Constants.MonthMin || date.Month > Constants.MonthMax))
 			{
 				throw new ArgumentOutOfRangeException("Month must be between 1 and 12", nameof(date.Month));
 			}

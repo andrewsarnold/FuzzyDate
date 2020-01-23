@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
 using FuzzyDates.Exceptions;
 using FuzzyDates.Parsers;
 using FuzzyDates.Rules;
@@ -243,15 +242,15 @@ namespace FuzzyDates
 		{
 			// DateTime years must be between 1 and 9999
 			var year = Year.HasValue
-				? Math.Max(Year.Value, 1)
+				? Math.Max(Year.Value, Constants.YearMin)
 				: 1;
 
-			if (year > 9999)
+			if (year > Constants.YearMax)
 			{
 				year = DateTime.Now.Year;
 			}
 
-			return new DateTime(year, Month ?? 1, Day ?? 1);
+			return new DateTime(year, Month ?? Constants.DefaultMonth, Day ?? Constants.DefaultDay);
 		}
 
 		/// <summary>
@@ -296,16 +295,16 @@ namespace FuzzyDates
 				Month += value;
 
 				// Year wrapping: Towards the future
-				while (Month > 12)
+				while (Month > Constants.MonthsInYear)
 				{
-					Month -= 12;
+					Month -= Constants.MonthsInYear;
 					Year++;
 				}
 
 				// Year wrapping: Towards the past
 				while (Month <= 0)
 				{
-					Month += 12;
+					Month += Constants.MonthsInYear;
 					Year--;
 				}
 			}

@@ -4,7 +4,7 @@
 	{
 		public void Verify(FuzzyDate date)
 		{
-			if (!date.Day.HasValue || (date.Year.HasValue && date.Year < 1))
+			if (!date.Day.HasValue || (date.Year.HasValue && date.Year < Constants.YearMin))
 			{
 				return;
 			}
