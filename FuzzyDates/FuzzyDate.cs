@@ -293,9 +293,21 @@ namespace FuzzyDates
 		{
 			if (Month.HasValue)
 			{
-				var asDateTime = ToDateTime();
-				var newDateTime = asDateTime.AddMonths(value);
-				return new FuzzyDate(newDateTime);
+				Month += value;
+
+				// Year wrapping: Towards the future
+				while (Month > 12)
+				{
+					Month -= 12;
+					Year++;
+				}
+
+				// Year wrapping: Towards the past
+				while (Month <= 0)
+				{
+					Month += 12;
+					Year--;
+				}
 			}
 
 			return new FuzzyDate(Year, Month, Day);

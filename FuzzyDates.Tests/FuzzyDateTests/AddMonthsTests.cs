@@ -14,6 +14,7 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 				var fd = new FuzzyDate(2019);
 				var newDate = fd.AddMonths(10);
 				Assert.IsFalse(newDate.Month.HasValue);
+				Assert.IsFalse(newDate.Day.HasValue);
 			}
 			catch (Exception ex)
 			{
@@ -30,6 +31,7 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 				var newDate = fd.AddMonths(-5);
 				Assert.AreEqual(2019, newDate.Year);
 				Assert.AreEqual(4, newDate.Month);
+				Assert.IsFalse(newDate.Day.HasValue);
 			}
 			catch (Exception ex)
 			{
@@ -46,6 +48,7 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 				var newDate = fd.AddMonths(0);
 				Assert.AreEqual(2019, newDate.Year);
 				Assert.AreEqual(9, newDate.Month);
+				Assert.IsFalse(newDate.Day.HasValue);
 			}
 			catch (Exception ex)
 			{
@@ -62,6 +65,7 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 				var newDate = fd.AddMonths(10);
 				Assert.AreEqual(2020, newDate.Year);
 				Assert.AreEqual(7, newDate.Month);
+				Assert.IsFalse(newDate.Day.HasValue);
 			}
 			catch (Exception ex)
 			{
