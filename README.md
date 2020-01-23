@@ -58,7 +58,7 @@ Examples (-1 = first is before; 0 = equivalent; 1 = second is before):
 
 ### Conversion
 
-Use `.ToIso8601()` to render an [ISO 8601](https://en.wikipedia.org/wiki/ISO-8601) compatible string:
+Use `.ToIso8601()` to render an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compatible string:
 
 | FuzzyDate | ISO 8601 |
 |:------|:-------|
@@ -111,7 +111,7 @@ var c = FuzzyDateRange.Parse("2019/12/13-2020/01/03");
 
 ### Conversion
 
-Use `.ToIso8601()` to render an [ISO 8601](https://en.wikipedia.org/wiki/ISO-8601) compatible string. For example, `new FuzzyDateRange(new FuzzyDate(2019, 4, 5), new FuzzyDate(2020, 1, 22))` converts to `"2019-04-05/2020-01-22"`.
+Use `.ToIso8601()` to render an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) compatible string. For example, `new FuzzyDateRange(new FuzzyDate(2019, 4, 5), new FuzzyDate(2020, 1, 22))` converts to `"2019-04-05/2020-01-22"`.
 
 Use `.ToTimeSpan()` to convert to a .NET TimeSpan object, using the built-in `FuzzyDate.ToDateTime()` method internally.
 
