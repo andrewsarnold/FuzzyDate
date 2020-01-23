@@ -70,7 +70,7 @@ Use `.ToIso8601()` to render an [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
 Use `ToDateTime()` to convert to a .NET DateTime object, using `1` for missing values:
 ``` c#
 DateTime dt = new FuzzyDate(2020).ToDateTime();
-// dt = 2020/1/1 0:00:00
+// dt = 2020/01/01 0:00:00
 ```
 
 FuzzyDate also implements `ISerializable`.
@@ -83,7 +83,7 @@ Examples:
 ``` c#
 var a = new FuzzyDate(2020, 1, 23).AddDays(45); // result: 2020/03/08
 var b = new FuzzyDate(2020, 5).AddMonths(-5); // result: 2019/12
-var c = new FuzzyDate(2020).AddMonths(-5); // result: 2019/12
+var c = new FuzzyDate(2020).AddYears(3); // result: 2023
 ```
 
 ## FuzzyDateRange usage
