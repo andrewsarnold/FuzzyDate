@@ -243,7 +243,7 @@ namespace FuzzyDates
 			// DateTime years must be between 1 and 9999
 			var year = Year.HasValue
 				? Math.Max(Year.Value, Constants.YearMin)
-				: 1;
+				: Constants.YearMin;
 
 			if (year > Constants.YearMax)
 			{
