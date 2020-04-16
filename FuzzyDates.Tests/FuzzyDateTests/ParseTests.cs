@@ -24,6 +24,22 @@ namespace FuzzyDates.Tests.FuzzyDateTests
 		}
 
 		[TestMethod]
+		public void ParseFromZeroTest()
+		{
+			try
+			{
+				var date = FuzzyDate.Parse("0");
+				Assert.IsFalse(date.Year.HasValue);
+				Assert.IsFalse(date.Month.HasValue);
+				Assert.IsFalse(date.Day.HasValue);
+			}
+			catch (Exception ex)
+			{
+				Assert.Fail($"Expect no exception, but got {ex.Message}");
+			}
+		}
+
+		[TestMethod]
 		public void ParseFromYearTest()
 		{
 			try

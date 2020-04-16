@@ -5,7 +5,7 @@ namespace FuzzyDates.Parsers
 {
 	internal class FuzzyDateParserY : FuzzyDateParser
 	{
-		internal override Regex Regex => new Regex(@"^(\d{4})$");
+		internal override Regex Regex => new Regex(@"^(\d{1,4})$");
 
 		internal override Func<FuzzyDate> Constructor => () =>
 		{
